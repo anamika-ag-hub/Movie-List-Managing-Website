@@ -1,0 +1,140 @@
+{% extends 'blank_layout.html' %}  <!-- Extend from blank_layout.html -->
+{% load static %}  <!-- Ensure static tag is loaded -->
+
+{% block title %}Movie List{% endblock %}  <!-- Optionally, set a custom title for the page -->
+
+{% block content %}
+<h1 class="page-title">Movie List</h1>
+
+<!-- Inline CSS -->
+<style>
+    /* General Styling */
+    .page-title {
+        font-size: 32px;
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .movies-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .movie-card {
+        background-color: #434141;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(246, 149, 149, 0.1);
+        padding: 20px;
+        transition: transform 0.3s ease-in-out;
+       
+    }
+
+    .movie-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .movie-title {
+        font-size: 24px;
+        color: #fcfcfc;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .movie-summary {
+        font-size: 14px;
+        color: #fcfbfb;
+        margin-bottom: 15px;
+        flex-grow: 1;
+    }
+
+    .movie-year {
+        font-size: 16px;
+        color: #f8f2f2;
+        margin-bottom: 15px;
+    }
+
+    .movie-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+        gap: 10px;
+    }
+
+    .edit-btn,
+    .delete-btn {
+        text-decoration: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        font-size: 14px;
+        transition: background-color 0.3s;
+        display: inline-block;
+        width: 45%;
+        text-align: center;
+    }
+
+    .edit-btn {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .delete-btn {
+        background-color: #f44336;
+        color: white;
+    }
+
+    .edit-btn:hover {
+        background-color: #45a049;
+    }
+
+    .delete-btn:hover {
+        background-color: #e60000;
+    }
+
+    .movie-poster {
+        text-align: center;
+        margin-top: 15px;
+        flex-shrink: 0;
+    }
+
+    .poster-img {
+        border-radius: 8px;
+        max-width: 250px;
+        height: 250px;
+        object-fit: cover;
+    }
+
+    .no-poster-text {
+        font-size: 14px;
+        color: #888;
+        text-align: center;
+    }
+</style>
+
+<div class="movies-container">
+    {% for movie_obj in movies %}
+        <div class="movie-card">
+            <h2 class="movie-title">{{ movie_obj.title|upper }}</h2>
+            <p class="movie-summary">{{ movie_obj.description|default:'No summary available' }}</p>
+            <p class="movie-year">Year: {{ movie_obj.year }}</p>
+
+            <div class="movie-actions">
+                <a href="{% url 'edit' movie_obj.id %}" class="edit-btn">Edit</a>
+                <a href="{% url 'delete' movie_obj.id %}" class="delete-btn">Delete</a>
+            </div>
+
+            <div class="movie-poster">
+                {% if movie_obj.poster %}
+                    <img src="{{ movie_obj.poster.url }}" alt="Poster not available" class="poster-img">
+                {% else %}
+                    <p class="no-poster-text">No poster available</p>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

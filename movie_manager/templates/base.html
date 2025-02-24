@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Movie Project{% endblock %}</title>  <!-- Set a default title block -->
+
+    <!-- Link to external CSS file for custom styling -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+<!-- Header with Logo and Title -->
+<header class="main-header">
+    <div class="logo-container">
+        <h1 class="site-title">Movie Project</h1>
+        <img src="{% static 'images/logo.jpg' %}" alt="Logo" class="logo-img"/>
+    </div>
+</header>
+
+<!-- Navigation Bar -->
+<nav class="navbar">
+    <ul class="nav-list">
+        <li><a href="{% url 'create' %}" class="nav-link">Create</a></li>
+        <li><a href="{% url 'list' %}" class="nav-link">List</a></li>
+        <li><a href="{% url 'logout' %}" class="nav-link">Logout</a></li>
+    </ul>
+</nav>
+
+<!-- Main Content Block -->
+{% block content %}
+<!-- Content will be inserted here from the extending template -->
+{% endblock content %}
+
+</body>
+</html>

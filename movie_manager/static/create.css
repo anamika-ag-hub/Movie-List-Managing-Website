@@ -1,0 +1,91 @@
+/* Container for the entire form section */
+.form-container {
+    background-color: #fff;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+}
+
+/* Form Title */
+.form-title {
+    text-align: center;
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Style for the form */
+.movie-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Style for the form fields */
+.form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Each form field input and textarea */
+.movie-form input,
+.movie-form textarea,
+.movie-form select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+}
+
+/* Focus state for form fields */
+.movie-form input:focus,
+.movie-form textarea:focus,
+.movie-form select:focus {
+    border-color: #ff6600;
+    outline: none;
+}
+
+/* Submit button styling */
+.submit-btn {
+    padding: 10px 20px;
+    background-color: #ff6600;
+    color: white;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-self: center;
+}
+
+/* Submit button hover effect */
+.submit-btn:hover {
+    background-color: #e65c00;
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+    .form-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .form-title {
+        font-size: 2em;
+    }
+
+    .movie-form input,
+    .movie-form textarea,
+    .movie-form select {
+        font-size: 1em;
+    }
+
+    .submit-btn {
+        font-size: 1em;
+        padding: 8px 16px;
+    }
+}

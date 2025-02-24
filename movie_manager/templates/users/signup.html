@@ -1,0 +1,125 @@
+{% block content%} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create User</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://img.freepik.com/free-vector/vibrant-summer-ombre-background-vector_53876-105765.jpg?semt=ais_hybrid');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 40px;
+            font-size: 2em;
+        }
+
+        form {
+            background-color: #fff;
+            width: 300px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            background-image: url('https://t3.ftcdn.net/jpg/05/15/29/74/360_F_515297408_GRDBJY7xu6b5di37wldGRrJ2Y2Coyzp7.jpg');
+            
+
+        }
+
+        label {
+            font-size: 1.1em;
+            color: #333;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #a158a8;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #4a8dc7;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .success {
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        .error {
+            background-color: #f44336;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .error, .success {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Create user</h1> 
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p><label for="username">Username:</label><input type="text" name="username" id="username"></p>
+    <p><label for="password">Password:</label><input type="password" name="password" id="password"></p>
+
+    <button type="submit">Sign Up</button>
+    <a href="{% url 'login' %}" class="nav-link" style="display: flex; justify-content: center; align-items: center; text-align: center; width: 100%;">Login</a>
+
+</form> 
+
+<!-- Success message -->
+{% if user %}
+<p class="success">
+    New user created with username: {{ user.username }}
+</p>
+{% endif %}
+
+<!-- Error message -->
+{% if error_message %}
+<p class="error"> 
+    Error: {{ error_message }}
+</p>
+{% endif %}
+
+</body>
+</html>
+{% endblock %}
